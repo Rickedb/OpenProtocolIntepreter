@@ -52,6 +52,17 @@ namespace OpenProtocolInterpreter.MultiSpindle
             _boolConverter = new BoolConverter();
         }
 
+        public Mid0100(int revision, bool sendOnlyNewData) : this(revision)
+        {
+            SendOnlyNewData = sendOnlyNewData;
+        }
+
+        public Mid0100(int revision, int dataNumberSysten, bool sendOnlyNewData) : this(revision)
+        {
+            DataNumberSystem = dataNumberSysten;
+            SendOnlyNewData = sendOnlyNewData;
+        }
+
         protected override Dictionary<int, List<DataField>> RegisterDatafields()
         {
             return new Dictionary<int, List<DataField>>()
@@ -68,6 +79,9 @@ namespace OpenProtocolInterpreter.MultiSpindle
                             {
                                 new DataField((int)DataFields.SEND_ONLY_NEW_DATA, 30, 1, '0', DataField.PaddingOrientations.LEFT_PADDED, false),
                             }
+                },
+                {
+                    4, new List<DataField>()
                 }
             };
         }

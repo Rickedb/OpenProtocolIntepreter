@@ -21,7 +21,7 @@ namespace OpenProtocolInterpreter.Converters
         {
             for (int i = 0; i < value.Length; i += 18)
             {
-                var spindleValue = value.Substring(i * 18, 18);
+                var spindleValue = value.Substring(i, 18);
                 yield return new SpindleOrPressStatus()
                 {
                     SpindleOrPressNumber = _intConverter.Convert(spindleValue.Substring(0, 2)),

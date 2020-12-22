@@ -44,7 +44,8 @@ namespace OpenProtocolInterpreter
                 .UseTimeMessages(mode)
                 .UseToolMessages(mode)
                 .UseUserInterfaceMessages(mode)
-                .UseVinMessages(mode);
+                .UseVinMessages(mode)
+                .UseModeMessages(mode);
         }
 
         /// <summary>
@@ -82,7 +83,8 @@ namespace OpenProtocolInterpreter
                 .UseTimeMessages(mids.Where(x => DoesImplementInteface(x, typeof(Time.ITime))))
                 .UseToolMessages(mids.Where(x => DoesImplementInteface(x, typeof(Tool.ITool))))
                 .UseUserInterfaceMessages(mids.Where(x => DoesImplementInteface(x, typeof(UserInterface.IUserInterface))))
-                .UseVinMessages(mids.Where(x => DoesImplementInteface(x, typeof(Vin.IVin))));
+                .UseVinMessages(mids.Where(x => DoesImplementInteface(x, typeof(Vin.IVin))))
+                .UseModeMessages(mids.Where(x => DoesImplementInteface(x, typeof(Mode.IMode))));
         }
 
 
@@ -431,6 +433,21 @@ namespace OpenProtocolInterpreter
                 throw new ArgumentException($"Types should inherit Mid class and must implement IVin interface");
 
             midInterpreter.UseTemplate<Vin.VinMessages>(mids);
+            return midInterpreter;
+        }
+
+        public static MidInterpreter UseModeMessages(this MidInterpreter midInterpreter, InterpreterMode mode = InterpreterMode.Both)
+        {
+            midInterpreter.UseTemplate<Mode.ModeMessages>(mode);
+            return midInterpreter;
+        }
+
+        public static MidInterpreter UseModeMessages(this MidInterpreter midInterpreter, IEnumerable<Type> mids)
+        {
+            if (!IsValid(mids, typeof(Mode.IMode)))
+                throw new ArgumentException($"Types should inherit Mid class and must implement IMode interface");
+
+            midInterpreter.UseTemplate<Mode.ModeMessages>(mids);
             return midInterpreter;
         }
     }

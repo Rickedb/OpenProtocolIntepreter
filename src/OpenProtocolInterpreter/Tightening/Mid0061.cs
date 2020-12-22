@@ -488,9 +488,10 @@ namespace OpenProtocolInterpreter.Tightening
         {
             var headerData = ToAscii(package.Take(20).ToArray());
             HeaderData = ProcessHeader(headerData);
-            if (HeaderData.Revision == 1 || HeaderData.Revision == 999)
+            if (HeaderData.Revision <=1 || HeaderData.Revision == 999)
             {
-                ProcessDataFields(package, RevisionsByFields[HeaderData.Revision]);
+                int revision = HeaderData.Revision > 0 ? HeaderData.Revision : 1;
+                ProcessDataFields(package, RevisionsByFields[revision]);
             }
             else
             {
@@ -513,9 +514,10 @@ namespace OpenProtocolInterpreter.Tightening
 
         protected override void ProcessDataFields(string package)
         {
-            if (HeaderData.Revision == 1 || HeaderData.Revision == 999)
+            if (HeaderData.Revision < 2 || HeaderData.Revision == 999)
             {
-                ProcessDataFields(RevisionsByFields[HeaderData.Revision], package);
+                int revision = HeaderData.Revision > 0 ? HeaderData.Revision : 1;
+                ProcessDataFields(RevisionsByFields[revision], package);
             }
             else
             {

@@ -21,7 +21,8 @@ namespace OpenProtocolInterpreter.Tool
                 { Mid0045.MID, new MidCompiledInstance(typeof(Mid0045)) },
                 { Mid0046.MID, new MidCompiledInstance(typeof(Mid0046)) },
                 { Mid0047.MID, new MidCompiledInstance(typeof(Mid0047)) },
-                { Mid0048.MID, new MidCompiledInstance(typeof(Mid0048)) }
+                { Mid0048.MID, new MidCompiledInstance(typeof(Mid0048)) },
+                { Mid0701.MID, new MidCompiledInstance(typeof(Mid0701)) }
             };
         }
 
@@ -35,6 +36,6 @@ namespace OpenProtocolInterpreter.Tool
             FilterSelectedMids(mode);
         }
 
-        public override bool IsAssignableTo(int mid) => mid > 39 && mid < 49;
+        public override bool IsAssignableTo(int mid) => mid > 39 && mid < 49 || mid == 701;
     }
 }
