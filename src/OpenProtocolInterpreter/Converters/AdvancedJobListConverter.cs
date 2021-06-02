@@ -36,7 +36,7 @@ namespace OpenProtocolInterpreter.Converters
                 advancedJobsList.Add(string.Join(":", fields));
             }
 
-            return string.Join(";", advancedJobsList);
+            return string.Join(";", advancedJobsList) + ";";
         }
 
         public override string Convert(char paddingChar, int size, DataField.PaddingOrientations orientation, IEnumerable<AdvancedJob> value) => Convert(value);

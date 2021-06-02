@@ -183,7 +183,7 @@ namespace OpenProtocolInterpreter.Job.Advanced
                                         new DataField((int)DataFields.BATCH_STATUS_AT_INCREMENT, 0, 1),
                                         new DataField((int)DataFields.DECREMENT_BATCH_AT_OK_LOOSENING, 0, 1),
                                         new DataField((int)DataFields.MAX_TIME_FOR_FIRST_TIGHTENING, 0, 4, '0', DataField.PaddingOrientations.LEFT_PADDED),
-                                        new DataField((int)DataFields.MAX_TIME_TO_COMPLETE_JOB, 0, 4, '0', DataField.PaddingOrientations.LEFT_PADDED),
+                                        new DataField((int)DataFields.MAX_TIME_TO_COMPLETE_JOB, 0, 5, '0', DataField.PaddingOrientations.LEFT_PADDED),
                                         new DataField((int)DataFields.DISPLAY_RESULT_AT_AUTO_SELECT, 0, 4, '0', DataField.PaddingOrientations.LEFT_PADDED),
                                         new DataField((int)DataFields.USE_LINE_CONTROL, 0, 1),
                                         new DataField((int)DataFields.IDENTIFIER_RESULT_PART, 0, 1),
