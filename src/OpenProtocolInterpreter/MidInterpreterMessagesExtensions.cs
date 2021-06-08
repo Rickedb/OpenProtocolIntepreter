@@ -61,6 +61,7 @@ namespace OpenProtocolInterpreter
                 .UseResultMessages(mode)
                 .UseStatisticMessages(mode)
                 .UseTighteningMessages(mode)
+                .UseTighteningResultsMessages(mode)
                 .UseTimeMessages(mode)
                 .UseToolMessages(mode)
                 .UseUserInterfaceMessages(mode)
@@ -840,6 +841,21 @@ namespace OpenProtocolInterpreter
         {
             ThrowIfInvalid<ITightening>(mids);
             midInterpreter.UseTemplate<TighteningMessages>(mids);
+            return midInterpreter;
+        }
+
+        public static MidInterpreter UseTighteningResultsMessages(this MidInterpreter midInterpreter, InterpreterMode mode = InterpreterMode.Both)
+        {
+            midInterpreter.UseTemplate<TighteningResults.TighteningResultMessages>(mode);
+            return midInterpreter;
+        }
+
+        public static MidInterpreter UseTighteningResultsMessages(this MidInterpreter midInterpreter, IEnumerable<Type> mids)
+        {
+            if (!IsValid(mids, typeof(TighteningResults.ITighteningResults)))
+                throw new ArgumentException($"Types should inherit Mid class and must implement ITighteningResults interface");
+
+            midInterpreter.UseTemplate<TighteningResults.TighteningResultMessages>(mids);
             return midInterpreter;
         }
 
